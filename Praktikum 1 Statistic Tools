@@ -1,0 +1,63 @@
+library(datasets)  
+library(plyr)
+library(data.table)
+library(readr)
+
+
+if (!require("pacman")) install.packages("pacman")
+
+pacman::p_load(pacman, rio,dplyr,tidyr,stringr,
+               lubridate,httr,ggvis,ggplot2, shiny, rmarkdown)
+
+#FM 25
+FMA_Krikilan_xlsx <- import("C:\\Praktikum\\FM 25 Soal A\\FMA_Krikilan.xlsx")
+head(FMA_Krikilan_xlsx)
+
+
+library(readxl)
+FMA_Krikilan <- read_excel("C:/Praktikum/FM 25 Soal A/FMA_Krikilan.xlsx", 
+                           col_types = c("numeric", "numeric", "numeric", 
+                                         "numeric", "numeric", "numeric", 
+                                         "numeric", "numeric", "numeric", 
+                                         "numeric"))
+View(FMA_Krikilan)
+
+#FM 26
+count(FMA_Krikilan_xlsx,'K5')
+
+table(FMA_Krikilan_xlsx$K5)->data1
+data1
+
+
+FMB_Krikilan_xlsx <- import("C:\\Praktikum\\FM 25 Soal B\\FMB_Krikilan.xlsx")
+head(FMB_Krikilan_xlsx)
+
+library(readxl)
+FMB_Krikilan <- read_excel("C:/Praktikum/FM 25 Soal B/FMB_Krikilan.xlsx", 
+                           col_types = c("numeric", "numeric"))
+View(FMB_Krikilan)
+
+table(FMB_Krikilan_xlsx)-> data2
+mean(data2)
+median(data2)
+sd(data2)
+quantile(data2)
+plot(data2)
+
+hist(data2,
+     main = "Histogram penjualan",
+     xlab = "promosi",
+     ylab = "penjualan",
+     breaks = 20,
+     col = "red",
+) #histogram
+
+plot(data2,
+     main = "scatter plot penjualan",
+     xlab = "promosi",
+     ylab = "penjualan",
+     col = "green"
+) #scatter plot
+
+summary(cor(data2)) #Korelasi
+lm(data2) #Regresi
